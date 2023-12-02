@@ -1,4 +1,4 @@
-package se.sysdev.calculator;
+package se.sysdev.calculator.domain.dto;
 
 public class CalculationResult {
   public long result;
