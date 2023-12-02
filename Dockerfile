@@ -1,4 +1,4 @@
-FROM openjdk:11
-MAINTAINER sysdev.se
-COPY target/calculator-1.0-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM amazoncorretto:17-alpine
+EXPOSE 8080
+ADD target/calculator.jar calculator.jar
+ENTRYPOINT ["java", "-jar", "/calculator.jar"]
