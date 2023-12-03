@@ -4,6 +4,7 @@ docker image build -t calculator:latest .
 
 Run locally:
 docker run -p 8080:8080 calculator:latest
+
 http://localhost:8080/v1/calculation/?operation=addition&oa=3&ob=5
 
 Push image to gcp manually:
