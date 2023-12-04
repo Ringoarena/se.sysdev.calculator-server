@@ -6,9 +6,14 @@ import se.sysdev.calculator.domain.dto.CalculationPayload;
 
 @Service
 public class DefaultCalculatorService implements CalculatorService {
-
   @Autowired
   private CalculationFactory calculationFactory;
+  private String[] availableOperations = new String[]{"addition", "multiplication"};
+
+  @Override
+  public String[] getAvailableOperations() {
+    return availableOperations;
+  }
 
   @Override
   public long calculate(CalculationPayload payload) {

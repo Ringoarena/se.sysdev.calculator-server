@@ -1,9 +1,9 @@
 package se.sysdev.calculator.domain.dto;
 
-public class CalculationResult {
+public class CalculationResponse {
   public long result;
 
-  public CalculationResult(long result) {
+  public CalculationResponse(long result) {
     this.result = result;
   }
 }

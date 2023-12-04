@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import se.sysdev.calculator.domain.dto.CalculationPayload;
-import se.sysdev.calculator.domain.dto.CalculationResult;
+import se.sysdev.calculator.domain.dto.CalculationResponse;
 import se.sysdev.calculator.domain.CalculatorService;
 
 @RestController
@@ -17,7 +17,7 @@ public class V1Controller {
   private CalculatorService service;
 
   @GetMapping("/calculation")
-  public CalculationResult calculate(
+  public CalculationResponse calculate(
           @RequestParam String operation,
           @RequestParam String oa,
           @RequestParam String ob
@@ -25,6 +25,6 @@ public class V1Controller {
     long[] operands = {Long.parseLong(oa), Long.parseLong(ob)};
     CalculationPayload payload = new CalculationPayload(operation, operands);
     long result = this.service.calculate(payload);
-    return new CalculationResult(result);
+    return new CalculationResponse(result);
   }
 }

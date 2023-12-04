@@ -1,24 +1,27 @@
 package se.sysdev.calculator.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import se.sysdev.calculator.domain.dto.OperationsResponse;
 import se.sysdev.calculator.domain.dto.CalculationPayload;
-import se.sysdev.calculator.domain.dto.CalculationResult;
+import se.sysdev.calculator.domain.dto.CalculationResponse;
 import se.sysdev.calculator.domain.CalculatorService;
 
 @RestController
 @RequestMapping("v2")
 public class V2Controller {
-
   @Autowired
   private CalculatorService service;
 
+  @GetMapping("/operations")
+  public OperationsResponse getAvailableOperations() {
+    String[] availableOperations = this.service.getAvailableOperations();
+    return new OperationsResponse(availableOperations);
+  }
+
   @PostMapping("/calculation")
-  public CalculationResult calculate(@RequestBody CalculationPayload payload) {
+  public CalculationResponse calculate(@RequestBody CalculationPayload payload) {
     long result = this.service.calculate(payload);
-    return new CalculationResult(result);
+    return new CalculationResponse(result);
   }
 }
